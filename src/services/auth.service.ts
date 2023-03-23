@@ -17,8 +17,10 @@ class AuthService {
 
     const hashedPassword = await hash(userData.password, 10);
     const createUserData: User = await Users.query()
-      .insert({ ...userData, password: hashedPassword })
+      .insert({ ...userData, password: hashedPassword, created_at: new Date() })
       .into('users');
+    
+    delete createUserData.password;
 
     return createUserData;
   }
@@ -34,6 +36,8 @@ class AuthService {
 
     const tokenData = this.createToken(findUser);
     const cookie = this.createCookie(tokenData);
+    
+    delete findUser.password;
 
     return { cookie, findUser };
   }

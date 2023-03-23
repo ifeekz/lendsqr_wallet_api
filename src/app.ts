@@ -8,7 +8,7 @@ import morgan from 'morgan';
 import { Model } from 'objection';
 import swaggerJSDoc from 'swagger-jsdoc';
 import swaggerUi from 'swagger-ui-express';
-import { NODE_ENV, PORT, LOG_FORMAT, ORIGIN, CREDENTIALS } from '@config';
+import { NODE_ENV, API_BASE_URL, PORT, LOG_FORMAT, ORIGIN, CREDENTIALS } from '@config';
 import knex from '@databases';
 import { Routes } from '@interfaces/routes.interface';
 import errorMiddleware from '@middlewares/error.middleware';
@@ -61,18 +61,28 @@ class App {
 
   private initializeRoutes(routes: Routes[]) {
     routes.forEach(route => {
-      this.app.use('/', route.router);
+      this.app.use('/api', route.router);
     });
   }
 
   private initializeSwagger() {
     const options = {
       swaggerDefinition: {
+        openapi: '3.0.0',
         info: {
-          title: 'REST API',
+          title: 'Lendsqr Wallet API',
           version: '1.0.0',
-          description: 'Example docs',
+          description: 'Lendsqr Wallet API Docs',
+          license: {
+            name: 'MIT',
+            url: 'https://github.com/ifeekz/lendsqr_wallet_api/blob/main/LICENSE',
+          },
         },
+        servers: [
+          {
+            url: `${API_BASE_URL}/api/v1`,
+          },
+        ],
       },
       apis: ['swagger.yaml'],
     };

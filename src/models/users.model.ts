@@ -3,8 +3,10 @@ import { User } from '@interfaces/users.interface';
 
 export class Users extends Model implements User {
   id!: number;
+  name!: string;
   email!: string;
   password!: string;
+  created_at!: Date;
 
   static tableName = 'users';
   static idColumn = 'id';
