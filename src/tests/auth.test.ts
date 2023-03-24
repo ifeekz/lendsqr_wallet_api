@@ -1,37 +1,47 @@
 import request from 'supertest';
 import App from '@/app';
+import { LoginDto } from '@dtos/auth.dto';
 import { CreateUserDto } from '@dtos/users.dto';
 import AuthRoute from '@routes/auth.route';
+
+let email: string = '';
+beforeAll(async () => {
+  email = `test-${Date.now()}@email.com`;
+});
 
 afterAll(async () => {
   await new Promise<void>(resolve => setTimeout(() => resolve(), 500));
 });
 
 describe('Testing Auth', () => {
-  describe('[POST] /signup', () => {
-    it('should create user account and respond with created userData and statusCode 201 / created', () => {
+  describe('[POST] /api/v1/auth/signup', () => {
+    it('should create user account and respond with statusCode 201 / created', () => {
       const userData: CreateUserDto = {
-        email: 'test@email.com',
-        password: 'q1w2e3r4',
-      };
-
-      const authRoute = new AuthRoute();
-      const app = new App([authRoute]);
-      return request(app.getServer()).post('/signup').send(userData).expect(201);
-    });
-  });
-
-  describe('[POST] /login', () => {
-    it('response should have the Set-Cookie header with the Authorization token', async () => {
-      const userData: CreateUserDto = {
-        email: 'test@email.com',
+        name: 'Test User',
+        email,
         password: 'q1w2e3r4',
       };
 
       const authRoute = new AuthRoute();
       const app = new App([authRoute]);
       return request(app.getServer())
-        .post('/login')
+        .post('/api/v1/auth/signup')
+        .send(userData)
+        .expect(201);
+    });
+  });
+
+  describe('[POST] /api/v1/auth/login', () => {
+    it('response should have the Set-Cookie header with the Authorization token', async () => {
+      const userData: LoginDto = {
+        email,
+        password: 'q1w2e3r4',
+      };
+
+      const authRoute = new AuthRoute();
+      const app = new App([authRoute]);
+      return request(app.getServer())
+        .post('/api/v1/auth/login')
         .send(userData)
         .expect('Set-Cookie', /^Authorization=.+/);
     });
