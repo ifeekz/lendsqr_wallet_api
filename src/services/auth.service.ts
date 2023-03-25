@@ -10,52 +10,62 @@ import { isEmpty } from '@utils/util';
 import { LoginDto } from '@/dtos/auth.dto';
 
 class AuthService {
+  /**
+   * Register user
+   *  @param {CreateUserDto}  userData user data object
+   * @returns {Promise<User>}
+   */
   public async signup(userData: CreateUserDto): Promise<User> {
-    if (isEmpty(userData)) throw new HttpException(400, "userData is empty");
-
-    const findUser: Users = await Users.query().select().from('users').where('email', '=', userData.email).first();
-    if (findUser) throw new HttpException(409, `This email ${userData.email} already exists`);
-
     const hashedPassword = await hash(userData.password, 10);
     const createUserData: User = await Users.query()
       .insert({ ...userData, password: hashedPassword, created_at: new Date() })
       .into('users');
-    
+
     delete createUserData.password;
 
     return createUserData;
   }
 
-  public async login(userData: LoginDto): Promise<{ cookie: string; findUser: User }> {
-    if (isEmpty(userData)) throw new HttpException(400, "userData is empty");
+  /**
+   * Login user
+   *  @param {LoginDto}  credentials user credentials object
+   * @returns {Promise<{ cookie: string; user: User }>}
+   */
+  public async login(credentials: LoginDto): Promise<{ cookie: string; user: User }> {
+    if (isEmpty(credentials)) throw new HttpException(400, 'credentials is empty');
 
-    const findUser: User = await Users.query().select().from('users').where('email', '=', userData.email).first();
-    if (!findUser) throw new HttpException(409, `This email ${userData.email} was not found`);
+    const user: User = await Users.query().select().from('users').where('email', '=', credentials.email).first();
+    if (!user) throw new HttpException(400, `This email ${credentials.email} was not found`);
 
-    const isPasswordMatching: boolean = await compare(userData.password, findUser.password);
-    if (!isPasswordMatching) throw new HttpException(409, "Password is not matching");
+    const isPasswordMatching: boolean = await compare(credentials.password, user.password);
+    if (!isPasswordMatching) throw new HttpException(409, 'Password is not matching');
 
-    const tokenData = this.createToken(findUser);
+    const tokenData = this.createToken(user);
     const cookie = this.createCookie(tokenData);
-    
-    delete findUser.password;
 
-    return { cookie, findUser };
+    delete user.password;
+
+    return { cookie, user };
   }
 
+  /**
+   * Logout user
+   *  @param {CreateUserDto}  userData user data object
+   * @returns {Promise<User>}
+   */
   public async logout(userData: User): Promise<User> {
-    if (isEmpty(userData)) throw new HttpException(400, "userData is empty");
+    if (isEmpty(userData)) throw new HttpException(400, 'userData is empty');
 
-    const findUser: User = await Users.query()
+    const user: User = await Users.query()
       .select()
       .from('users')
       .where('email', '=', userData.email)
       .andWhere('password', '=', userData.password)
       .first();
 
-    if (!findUser) throw new HttpException(409, "User doesn't exist");
+    if (!user) throw new HttpException(409, "User doesn't exist");
 
-    return findUser;
+    return user;
   }
 
   public createToken(user: User): TokenData {

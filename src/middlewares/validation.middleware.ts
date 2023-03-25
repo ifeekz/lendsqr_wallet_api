@@ -13,11 +13,15 @@ const validationMiddleware = (
   return (req, res, next) => {
     validate(plainToInstance(type, req[value]), { skipMissingProperties, whitelist, forbidNonWhitelisted }).then((errors: ValidationError[]) => {
       if (errors.length > 0) {
-        const message = errors.map((error: ValidationError) => Object.values(error.constraints)).join(', ');
-        // next(new HttpException(400, message));
-        res.status(400).json({
+        const message = errors
+          .map((error: ValidationError) => Object.values(error.constraints))
+          .join(', ')
+          .split(', ');
+        
+        res.status(422).json({
           status: false,
-          message,
+          message: 'Some input errors occured',
+          errors: message,
         });
       } else {
         next();

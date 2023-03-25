@@ -5,6 +5,7 @@ export class Users extends Model implements User {
   id!: number;
   name!: string;
   email!: string;
+  phone_number!: string;
   password!: string;
   created_at!: Date;
 

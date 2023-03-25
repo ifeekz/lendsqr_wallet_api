@@ -5,8 +5,10 @@ import { CreateUserDto } from '@dtos/users.dto';
 import AuthRoute from '@routes/auth.route';
 
 let email: string = '';
+let phoneNumber: string = '';
 beforeAll(async () => {
-  email = `test-${Date.now()}@email.com`;
+  phoneNumber = `${Date.now()}`;
+  email = `test-${phoneNumber}@email.com`;
 });
 
 afterAll(async () => {
@@ -20,6 +22,7 @@ describe('Testing Auth', () => {
         name: 'Test User',
         email,
         password: 'q1w2e3r4',
+        phone_number: phoneNumber,
       };
 
       const authRoute = new AuthRoute();
