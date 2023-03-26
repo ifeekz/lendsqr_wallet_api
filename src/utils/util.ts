@@ -1,3 +1,5 @@
+const crypto = require('crypto');
+
 /**
  * @method isEmpty
  * @param {String | Number | Object} value
@@ -16,4 +18,13 @@ export const isEmpty = (value: string | number | object): boolean => {
   } else {
     return false;
   }
+};
+
+/**
+ * @method generateReference
+ * @returns {string} the reference number
+ * @description generate transaction reference number
+ */
+export const generateReference = (): string => {
+  return crypto.randomBytes(12).toString('hex');
 };

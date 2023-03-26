@@ -1,6 +1,6 @@
 import { Wallet } from '@/interfaces/wallets.interface';
-import { Wallets } from '@/models/wallets.model';
-import { registerDecorator, ValidationOptions, ValidatorConstraint, ValidatorConstraintInterface, ValidationArguments } from 'class-validator';
+import { Wallets } from '@/models/wallet.model';
+import { registerDecorator, ValidationOptions, ValidatorConstraint, ValidatorConstraintInterface } from 'class-validator';
 
 @ValidatorConstraint({ async: true })
 export class IsValidWalletConstraint implements ValidatorConstraintInterface {

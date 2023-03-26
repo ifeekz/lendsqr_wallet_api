@@ -3,11 +3,13 @@ import { Transaction } from '@/interfaces/transactions.interface';
 
 export class Transactions extends Model implements Transaction {
   id!: number;
+  reference!: string;
   wallet_id!: string;
   description!: string;
   amount!: number;
   type!: string;
   status!: string;
+  is_transfer!: boolean;
   created_at!: Date;
   updated_at!: Date;
 

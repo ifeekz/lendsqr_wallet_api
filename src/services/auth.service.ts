@@ -5,7 +5,7 @@ import { CreateUserDto } from '@dtos/users.dto';
 import { HttpException } from '@exceptions/HttpException';
 import { DataStoredInToken, TokenData } from '@interfaces/auth.interface';
 import { User } from '@interfaces/users.interface';
-import { Users } from '@models/users.model';
+import { Users } from '@/models/users.model';
 import { isEmpty } from '@utils/util';
 import { LoginDto } from '@/dtos/auth.dto';
 
@@ -18,7 +18,7 @@ class AuthService {
   public async signup(userData: CreateUserDto): Promise<User> {
     const hashedPassword = await hash(userData.password, 10);
     const createUserData: User = await Users.query()
-      .insert({ ...userData, password: hashedPassword, created_at: new Date() })
+      .insert({ ...userData, password: hashedPassword })
       .into('users');
 
     delete createUserData.password;

@@ -1,7 +1,7 @@
 import { CreateTransactionDto } from '@dtos/transactions.dto';
 import { HttpException } from '@exceptions/HttpException';
 import { Transaction } from '@interfaces/transactions.interface';
-import { Transactions } from '@models/transactions.model';
+import { Transactions } from '@/models/transaction.model';
 import { isEmpty } from '@utils/util';
 
 class TransactionService {

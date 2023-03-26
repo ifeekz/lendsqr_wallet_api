@@ -1,6 +1,6 @@
 import { HttpException } from '@exceptions/HttpException';
 import { User } from '@interfaces/users.interface';
-import { Users } from '@models/users.model';
+import { Users } from '@/models/users.model';
 
 class UserService {
   public async findUserById(userId: number): Promise<User> {

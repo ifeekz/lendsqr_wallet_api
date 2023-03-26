@@ -4,11 +4,13 @@ import { Knex } from "knex";
 export async function up(knex: Knex): Promise<void> {
     await knex.schema.createTable('transactions', table => {
       table.bigIncrements('id').unsigned().primary();
+      table.string('reference', 32).unique().notNullable();
       table.string('wallet_id', 20).notNullable();
       table.string('description').nullable();
       table.float('amount', 8, 2).notNullable();
       table.string('type').notNullable();
       table.string('status').notNullable();
+      table.boolean('is_transfer').defaultTo(false);
       table.timestamps({ defaultToNow: true });
 
       table.foreign('wallet_id').references('wallet_id').inTable('wallets').onDelete('CASCADE');
