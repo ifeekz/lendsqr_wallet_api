@@ -91,7 +91,7 @@ npm run db:seed
 ```
 
 ### Design Documentation
-[Here](https://pages.github.com/) is the design documentation
+[Here](DESIGN.md) is the design documentation
 
 ### E-R Diagram
-![E-R Diagram](er-diagram.png "E-R Diagram")
+![E-R Diagram](public/images/er-diagram.png "E-R Diagram")
