@@ -167,7 +167,7 @@ class WalletService {
 
     const wallet: Wallet = await this.findByWalletId(walletId);
 
-    if (!walletId) {
+    if (!wallet) {
       throw new HttpException(400, 'Wallet does not exist');
     }
 
