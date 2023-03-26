@@ -21,3 +21,9 @@ export class TransferToWalletDto {
   @IsOptional()
   public description: string;
 }
+
+export class WithdrawFromWalletDto {
+  @IsNumber()
+  @IsNotEmpty({ message: 'Amount is required' })
+  public amount: number;
+}

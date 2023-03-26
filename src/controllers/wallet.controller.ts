@@ -50,6 +50,28 @@ class WalletController {
       next(error);
     }
   };
+
+  /**
+   * Withdraw from wallet method
+   *  @param {any} req express request
+   *  @param {Response}  res express response
+   * @returns {Promise<void>}
+   */
+  public withdrawFromWallet = async (req: any, res: Response, next: NextFunction): Promise<void> => {
+    try {
+      const walletId: string = req.user.phone_number;
+      const { amount } = req.body;
+      const walletData: Wallet = await this.walletService.withdrawFromWallet(walletId, amount);
+
+      res.status(200).json({
+        status: true,
+        message: 'Wallet withdrawal successfully',
+        data: walletData,
+      });
+    } catch (error) {
+      next(error);
+    }
+  };
 }
 
 export default WalletController;
