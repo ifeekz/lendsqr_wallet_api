@@ -1,7 +1,7 @@
 ## Design Document
 
 ### Design Pattern
-#### Adopted a Layered Approach
+#### 1. Adopted a Layered Approach
 ![Layered Architecture](public/images/layered-architecture.png "Layered Architecture")
 
 Recalling the objectives for layered architecture, I followed the "separation of concerns" principle during development. By dividing the codebase into three categories – *business logic*, *database*, and *API routes*, which fall into three different layers, service layer, controller layer, and data access layer. The idea is to separate the business logic from Node.js API routes to avoid complex background processes.
@@ -14,10 +14,10 @@ Recalling the objectives for layered architecture, I followed the "separation of
 
 The three-layered setup acts as a reliable arrangement for Node.js applications. These stages make the application easier to code, maintain, debug and test.
 
-#### Used dependency injection
+#### 2. Used dependency injection
 Dependency injection is a software design pattern that advocates passing (injecting) dependencies (or services) as parameters to modules instead of requiring or creating specific ones inside them. This is a fancy term for a fundamental concept that keeps your modules more flexible, independent, reusable, scalable, and easily testable across the application.
 
-#### Utilized third-party solutions
+#### 3. Utilized third-party solutions
 Node.js has a vast developer community across the world. In addition, Node.js offers a package manager, NPM, which is full of feature-rich, well-maintained, well-documented frameworks, libraries, and tools. Therefore, I conveniently plugged several existing solutions into my code and make the most of their APIs.
 
 Some of the Node.js libraries used to enhance my coding workflows are:
@@ -31,3 +31,90 @@ Some of the Node.js libraries used to enhance my coding workflows are:
 - Makefile (This is a setting file of the make program used to make the compilation that occurs repeatedly on Linux)
 - NGINX (Web server)
 - Docker (Container platform)
+
+#### 4. Applied a uniform folder structure
+A folder structure can help you to transform that into reality. Here, I organized different modules into separate folders to clarify various functionalities, classes, and methods used in the application.
+
+Here is a basic folder structure I maitained while setting up a new application in Node.js:
+
+```sh
+│
+├──📂 .vscode
+│  ├── launch.json
+│  └── settings.json
+│
+├──📂 src
+│  ├──📂 config
+│  │  └── index.ts
+│  │
+│  ├──📂 controllers
+│  │  ├── auth.controller.ts
+│  │  └── users.controller.ts
+│  │
+│  ├──📂 dtos
+│  │  └── users.dto.ts
+│  │
+│  ├──📂 exceptions
+│  │  └── httpException.ts
+│  │
+│  ├──📂 http
+│  │  ├── auth.http
+│  │  └── users.http
+│  │
+│  ├──📂 interfaces
+│  │  ├── auth.interface.ts
+│  │  ├── routes.interface.ts
+│  │  └── users.interface.ts
+│  │
+│  ├──📂 middlewares
+│  │  ├── auth.middleware.ts
+│  │  ├── error.middleware.ts
+│  │  └── validation.middleware.ts
+│  │
+│  ├──📂 models
+│  │  └── users.model.ts
+│  │
+│  ├──📂 routes
+│  │  ├── auth.route.ts
+│  │  └── users.route.ts
+│  │
+│  ├──📂 services
+│  │  ├── auth.service.ts
+│  │  └── users.service.ts
+│  │
+│  ├──📂 test
+│  │  ├── auth.test.ts
+│  │  └── users.test.ts
+│  │
+│  ├──📂 utils
+│  │  ├── logger.ts
+│  │  └── vaildateEnv.ts
+│  │
+│  ├── app.ts
+│  └── server.ts
+│
+├── .dockerignore
+├── .editorconfig
+├── .env.development.local
+├── .env.production.local
+├── .env.test.local
+├── .eslintignore
+├── .eslintrc
+├── .gitignore
+├── .huskyrc
+├── .lintstagedrc.json
+├── .prettierrc
+├── .swcrc
+├── docker-compose.yml
+├── Dockerfile.dev
+├── Dockerfile.prod
+├── ecosystem.config.js
+├── jest.config.js
+├── Makefile
+├── nginx.conf
+├── nodemon.json
+├── package-lock.json
+├── package.json
+├── swagger.yaml
+└── tsconfig.json
+```
