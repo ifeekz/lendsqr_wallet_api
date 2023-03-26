@@ -13,6 +13,33 @@ Demo Credit is a mobile lending app that requires wallet functionality. This is 
 - MySQL database
 - Typescript
 
+## Installation
+
+To setup the application, follow these steps:
+
+Clone the repo:
+
+```bash
+git clone https://github.com/ifeekz/lendsqr_wallet_api.git
+cd lendsqr_wallet_api
+```
+
+Install the dependencies:
+
+```bash
+npm install
+```
+
+Set the environment variables:
+
+```bash
+cp .env.example .env.development.local
+cp .env.example .env.production.local
+cp .env.example .env.test.local
+
+# open .env.*.local (depending on the environment) and modify the environment variables (if needed)
+```
+
 ### Commands
 
 Running locally:
