@@ -14,7 +14,7 @@ Demo Credit is a mobile lending app that requires wallet functionality. This is 
 - Typescript
 
 ### Design Documentation
-Here is the design documentation
+[Here](https://pages.github.com/) is the design documentation
 
 ### E-R Diagram
 ![E-R Diagram](/er-diagram.png "E-R Diagram")
