@@ -90,6 +90,50 @@ npm run make:seeder
 npm run db:seed
 ```
 
+Docker:
+
+```bash
+# start the containers in the background and leaves them running
+docker-compose up -d
+
+# stop containers and removes containers, networks, volumes, and images
+docker-compose down
+```
+Modify `docker-compose.yml` and `Dockerfile` file to suite you.
+
+PM2:
+
+```bash
+# production mode
+npm run deploy:prod OR pm2 start ecosystem.config.js --only prod
+
+# development mode
+npm run deploy:dev OR pm2 start ecosystem.config.js --only dev
+```
+Modify `ecosystem.config.js` file to suite you.
+
+SWC:
+
+```bash
+# tsc build
+npm run build
+
+# swc build
+swc build :: npm run build:swc
+```
+Modify `.swcrc` file to suite you.
+
+Makefile:
+
+```bash
+# help
+make help
+
+# swc build
+swc build :: npm run build:swc
+```
+Modify `Makefile` file to suite you.
+
 ### Design Documentation
 [Here](DESIGN.md) is the design documentation
 

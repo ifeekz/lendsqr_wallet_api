@@ -20,4 +20,14 @@ Dependency injection is a software design pattern that advocates passing (inject
 #### Utilized third-party solutions
 Node.js has a vast developer community across the world. In addition, Node.js offers a package manager, NPM, which is full of feature-rich, well-maintained, well-documented frameworks, libraries, and tools. Therefore, I conveniently plugged several existing solutions into my code and make the most of their APIs.
 
-Some other Node.js libraries that may help you to enhance your coding workflows:
+Some of the Node.js libraries used to enhance my coding workflows are:
+- Nodemon (automatically restarts the app when there’s a code update)
+- Winston (logging)
+- ESLint, Prettier (code formatter)
+- Swagger (API document)
+- REST Client (HTTP client tools)
+- PM2 (Advanced, Production process manager for Node.js)
+- SWC (a super-fast JavaScript / TypeScript compiler)
+- Makefile (This is a setting file of the make program used to make the compilation that occurs repeatedly on Linux)
+- NGINX (Web server)
+- Docker (Container platform)
