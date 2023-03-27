@@ -1,5 +1,45 @@
 ## Design Document
 
+### System Specifications
+#### System features
+The following are the primary features of the Application.
+- SF1: Feature 1
+    - A user can create an account
+- SF2: Feature 2
+    - A user can fund their account
+- SF3: Feature 3
+    - A user can transfer funds to another user's account
+- SF4: Feature 4
+    - A user can withdraw funds from their account.
+
+#### Design and Implementation Constraints
+The following are the classes of users who will have specific roles of operation
+with Application and its reports:
+
+Functional Requirements:
+- SF1: Feature 1
+    - A user can create an account
+        - user signs up with: name, email, password, and phone number
+        - users' email and phone number should be unique
+        - user wallet should be created upon signup with the phone number provided as the wallet id
+        - user should be able to login with email and password
+        - uuthorization token should be used to authorize protected routes
+- SF2: Feature 2
+    - A user can fund their account
+        - only logged in user can fund their account
+        - each transaction should be unique to avoid duplication (to use idenpotency key)
+- SF3: Feature 3
+    - A user can transfer funds to another user's account
+        - only logged in user can transfer from their account
+        - a user can only transfer to an existing wallet id
+        - a user can transfer only amount that does not exceed his wallet balance
+        - each transaction should be unique to avoid duplication (to use idenpotency key)
+- SF4: Feature 4
+    - A user can withdraw funds from their account.
+        - only logged in user can withdraw from their account
+        - a user can transfer only amount that does not exceed his wallet balance
+        - each transaction should be unique to avoid duplication (to use idenpotency key)
+
 ### Design Pattern
 #### 1. Adopted a Layered Approach
 ![Layered Architecture](public/images/layered-architecture.png "Layered Architecture")
@@ -129,7 +169,7 @@ Here is a basic folder structure I maitained while setting up a new application 
 ***Logging and error-handling***: Build a centralized error-handling component for error handling in Node.js architecture, hence, avoiding duplication.
 
 #### 7. Practice writing asynchronous code
-Async/await mode has cleaner code, better readability, and easier error handling, thus, i went for it.
+Async/await mode has cleaner code, better readability, and easier error handling, thus, I went for it.
 
 #### 8. Using config file and environment variables
 As the application scales, you'll require global configuration options that every module can access. I used a separate file and put everything inside a `config` folder in the project structure.
