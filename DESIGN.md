@@ -6,11 +6,11 @@
 
 Recalling the objectives for layered architecture, I followed the "separation of concerns" principle during development. By dividing the codebase into three categories – *business logic*, *database*, and *API routes*, which fall into three different layers, service layer, controller layer, and data access layer. The idea is to separate the business logic from Node.js API routes to avoid complex background processes.
 
-**Controller layer** – This layer defines the API routes. The route handler functions let you deconstruct the request object, collect the necessary data pieces, and pass them on to the service layer for further processing.
+***Controller layer*** – This layer defines the API routes. The route handler functions let you deconstruct the request object, collect the necessary data pieces, and pass them on to the service layer for further processing.
 
-**Service layer** – This layer is responsible for executing the business logic. It includes classes and methods that follow S.O.L.I.D programming principles, perform singular responsibilities, and are reusable. The layer also decouples the processing logic from the defining point of routes.
+***Service layer*** – This layer is responsible for executing the business logic. It includes classes and methods that follow S.O.L.I.D programming principles, perform singular responsibilities, and are reusable. The layer also decouples the processing logic from the defining point of routes.
 
-**Data access layer** – Responsible for handling database, this layer fetches from, writes to, and updates the database. It also defines SQL queries, database connections, models, ORMs, etc.
+***Data access layer*** – Responsible for handling database, this layer fetches from, writes to, and updates the database. It also defines SQL queries, database connections, models, ORMs, etc.
 
 The three-layered setup acts as a reliable arrangement for Node.js applications. These stages make the application easier to code, maintain, debug and test.
 
@@ -118,3 +118,18 @@ Here is a basic folder structure I maitained while setting up a new application 
 ├── swagger.yaml
 └── tsconfig.json
 ```
+
+#### Used linters, formatters, style guide, and comments for clean coding
+***Linting and formatting***: To ensure consistency in formatting and styling across your whole project I used *ESLint* for inspecting Javascript code and *Prettier* for code formatting.
+
+***Style guides***: I adopted *Airbnb* style guide for Javascript for code readability, which cover everything from naming conventions formatting to file system encodings and to ensure global standard.
+
+#### Rectify errors with unit testing, logging, and error-handling
+***Unit testing***: Used Jest for writing test cases.
+***Logging and error-handling***: Build a centralized error-handling component for error handling in Node.js architecture, hence, avoiding duplication.
+
+#### Practice writing asynchronous code
+Async/await mode has cleaner code, better readability, and easier error handling, thus, i went for it.
+
+#### Using config file and environment variables
+As the application scales, you'll require global configuration options that every module can access. I used a separate file and put everything inside a `config` folder in the project structure.
