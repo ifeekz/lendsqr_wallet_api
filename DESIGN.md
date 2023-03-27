@@ -21,7 +21,7 @@ The following are the primary features of the Application.
         - users' email and phone number should be unique
         - user wallet should be created upon signup with the phone number provided as the wallet id
         - user should be able to login with email and password
-        - uuthorization token should be used to authorize protected routes
+        - authorization token should be used to authorize protected routes
 - *FR2: Feature 2*
     - A user can fund their account
         - only logged in user can fund their account
