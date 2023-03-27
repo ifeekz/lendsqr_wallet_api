@@ -119,17 +119,17 @@ Here is a basic folder structure I maitained while setting up a new application 
 └── tsconfig.json
 ```
 
-#### Used linters, formatters, style guide, and comments for clean coding
+#### 5. Used linters, formatters, style guide, and comments for clean coding
 ***Linting and formatting***: To ensure consistency in formatting and styling across your whole project I used *ESLint* for inspecting Javascript code and *Prettier* for code formatting.
 
 ***Style guides***: I adopted *Airbnb* style guide for Javascript for code readability, which cover everything from naming conventions formatting to file system encodings and to ensure global standard.
 
-#### Rectify errors with unit testing, logging, and error-handling
+#### 6. Rectify errors with unit testing, logging, and error-handling
 ***Unit testing***: Used Jest for writing test cases.
 ***Logging and error-handling***: Build a centralized error-handling component for error handling in Node.js architecture, hence, avoiding duplication.
 
-#### Practice writing asynchronous code
+#### 7. Practice writing asynchronous code
 Async/await mode has cleaner code, better readability, and easier error handling, thus, i went for it.
 
-#### Using config file and environment variables
+#### 8. Using config file and environment variables
 As the application scales, you'll require global configuration options that every module can access. I used a separate file and put everything inside a `config` folder in the project structure.
