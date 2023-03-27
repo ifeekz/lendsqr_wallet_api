@@ -171,3 +171,6 @@ Async/await mode has cleaner code, better readability, and easier error handling
 
 #### 8. Using config file and environment variables
 As the application scales, you'll require global configuration options that every module can access. I used a separate file and put everything inside a `config` folder in the project structure.
+
+### E-R Diagram
+![E-R Diagram](public/images/er-diagram.png "E-R Diagram")
