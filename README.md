@@ -136,6 +136,3 @@ Modify `Makefile` file to suit you.
 
 ### Design Documentation
 [Here](DESIGN.md) is the design documentation
-
-### E-R Diagram
-![E-R Diagram](public/images/er-diagram.png "E-R Diagram")
