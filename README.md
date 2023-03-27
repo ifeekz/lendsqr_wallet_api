@@ -119,7 +119,7 @@ SWC:
 npm run build
 
 # swc build
-swc build :: npm run build:swc
+npm run build:swc
 ```
 Modify `.swcrc` file to suit you.
 
@@ -128,9 +128,6 @@ Makefile:
 ```bash
 # help
 make help
-
-# swc build
-swc build :: npm run build:swc
 ```
 Modify `Makefile` file to suit you.
 
