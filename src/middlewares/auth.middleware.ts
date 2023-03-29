@@ -5,8 +5,6 @@ import { HttpException } from '@exceptions/HttpException';
 import { DataStoredInToken, RequestWithUser } from '@interfaces/auth.interface';
 import { User } from '@interfaces/users.interface';
 import { Users } from '@/models/users.model';
-import { Wallets } from '@/models/wallet.model';
-import { Wallet } from '@/interfaces/wallets.interface';
 
 const authMiddleware = async (req: RequestWithUser, res: Response, next: NextFunction) => {
   try {

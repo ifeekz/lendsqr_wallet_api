@@ -2,6 +2,7 @@ import { NextFunction, Request, Response } from 'express';
 import walletService from '@services/wallets.service';
 import { Wallet } from '@/interfaces/wallets.interface';
 import { TransferToWalletDto } from '@/dtos/wallets.dto';
+import { RequestWithUser } from '@/interfaces/auth.interface';
 
 class WalletController {
   public walletService = new walletService();
@@ -12,7 +13,7 @@ class WalletController {
    *  @param {Response}  res express response
    * @returns {Promise<void>}
    */
-  public fundWallet = async (req: any, res: Response, next: NextFunction): Promise<void> => {
+  public fundWallet = async (req: RequestWithUser, res: Response, next: NextFunction): Promise<void> => {
     try {
       const walletId: string = req.user.phone_number;
       const { amount } = req.body;
@@ -34,7 +35,7 @@ class WalletController {
    *  @param {Response}  res express response
    * @returns {Promise<void>}
    */
-  public transferToWallet = async (req: any, res: Response, next: NextFunction): Promise<void> => {
+  public transferToWallet = async (req: RequestWithUser, res: Response, next: NextFunction): Promise<void> => {
     try {
       const walletId: string = req.user.phone_number;
       const { receiver_wallet_id, amount, description } = req.body;
@@ -57,7 +58,7 @@ class WalletController {
    *  @param {Response}  res express response
    * @returns {Promise<void>}
    */
-  public withdrawFromWallet = async (req: any, res: Response, next: NextFunction): Promise<void> => {
+  public withdrawFromWallet = async (req: RequestWithUser, res: Response, next: NextFunction): Promise<void> => {
     try {
       const walletId: string = req.user.phone_number;
       const { amount } = req.body;
