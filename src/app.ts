@@ -61,7 +61,7 @@ class App {
 
   private initializeRoutes(routes: Routes[]) {
     routes.forEach(route => {
-      this.app.use('/api', route.router);
+      this.app.use('/', route.router);
     });
   }
 
@@ -80,7 +80,7 @@ class App {
         },
         servers: [
           {
-            url: `${API_BASE_URL}/api/v1`,
+            url: `${API_BASE_URL}/v1`,
           },
         ],
       },
