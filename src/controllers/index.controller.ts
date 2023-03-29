@@ -9,7 +9,7 @@ class IndexController {
       next(error);
     }
   };
-  public healthCheck = async (req: Request, res: Response, next: NextFunction): void => {
+  public healthCheck = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
     try {
       const healthcheck = {
         uptime: process.uptime(),
