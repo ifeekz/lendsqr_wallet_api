@@ -1,4 +1,3 @@
-import knex from '@databases';
 import { STATUS, TYPES } from '@/config/transaction';
 import { Transactions } from '@/models/transactions.model';
 import { Transfers } from '@/models/transfer.model';

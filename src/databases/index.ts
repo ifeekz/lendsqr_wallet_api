@@ -18,4 +18,14 @@ const dbConnection = {
   },
 };
 
+
+export const dbHealthStatus = Knex(dbConnection)
+  .raw('SELECT 1')
+  .then(() => {
+    return true;
+  })
+  .catch(e => {
+    return false;
+  });
+
 export default Knex(dbConnection);
