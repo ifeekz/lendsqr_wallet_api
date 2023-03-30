@@ -37,6 +37,7 @@ class WalletsRoute implements Routes {
       validationMiddleware(WithdrawFromWalletDto, 'body'),
       this.walletController.withdrawFromWallet,
     );
+    this.router.get(`${this.path}/balance`, authMiddleware, this.walletController.getWalletBalance);
   }
 }
 

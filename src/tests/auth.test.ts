@@ -16,7 +16,7 @@ afterAll(async () => {
 });
 
 describe('Testing Auth', () => {
-  describe('[POST] /api/v1/auth/signup', () => {
+  describe('[POST] /v1/auth/signup', () => {
     it('should create user account and respond with statusCode 201 / created', () => {
       const userData: CreateUserDto = {
         name: 'Test User',
@@ -28,13 +28,13 @@ describe('Testing Auth', () => {
       const authRoute = new AuthRoute();
       const app = new App([authRoute]);
       return request(app.getServer())
-        .post('/api/v1/auth/signup')
+        .post('/v1/auth/signup')
         .send(userData)
         .expect(201);
     });
   });
 
-  describe('[POST] /api/v1/auth/login', () => {
+  describe('[POST] /v1/auth/login', () => {
     it('response should have the Set-Cookie header with the Authorization token', async () => {
       const userData: LoginDto = {
         email,
@@ -44,7 +44,7 @@ describe('Testing Auth', () => {
       const authRoute = new AuthRoute();
       const app = new App([authRoute]);
       return request(app.getServer())
-        .post('/api/v1/auth/login')
+        .post('/v1/auth/login')
         .send(userData)
         .expect('Set-Cookie', /^Authorization=.+/);
     });

@@ -192,6 +192,27 @@ class WalletService {
       throw new HttpException(400, error.message);
     }
   }
+
+  /**
+   * Get wallet balance
+   *  @param {string} id user wallet id
+   * @returns {Promise<Wallet>}
+   */
+  public async getWalletBalance(id: string): Promise<Wallet> {
+    const wallet: Wallet = await Wallets.query().select().from('wallets').where('wallet_id', '=', id).first();
+    return wallet;
+  }
+
+  /**
+   * Check wallet id
+   *  @param {string} id user wallet id
+   * @returns {Promise<Boolean>}
+   */
+  public async isValidWalletId(id: string): Promise<boolean> {
+    const wallet: Wallet = await Wallets.query().select().from('wallets').where('wallet_id', '=', id).first();
+    if (!wallet) return false;
+    return true;
+  }
 }
 
 export default WalletService;

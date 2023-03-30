@@ -73,6 +73,27 @@ class WalletController {
       next(error);
     }
   };
+
+  /**
+   *Get user wallet balance method
+   *  @param {any} req express request
+   *  @param {Response}  res express response
+   * @returns {Promise<void>}
+   */
+  public getWalletBalance = async (req: RequestWithUser, res: Response, next: NextFunction): Promise<void> => {
+    try {
+      const walletId: string = req.user.phone_number;
+      const walletData: Wallet = await this.walletService.getWalletBalance(walletId);
+
+      res.status(200).json({
+        status: true,
+        message: 'Wallet ballance retrieved successfully',
+        data: { balance: walletData.balance },
+      });
+    } catch (error) {
+      next(error);
+    }
+  };
 }
 
 export default WalletController;
